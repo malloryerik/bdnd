@@ -11,9 +11,22 @@ export default class App extends Component {
 	state = initialData
 
 	//reordering logic
+	// result is an object with several fields -- see example-result.js -- which we destructure, 
+	// taking three values, dest, source and the dragId
+	// onDragEnd is used in DragDropContext.
+	// example:
+	// const result = {
+	// 	draggableId: 'task-1',
+	// 	type: 'TYPE',
+	// 	reason: 'DROP',
+	// 	source: {
+	// 		droppableId: 'column-1',
+	// 		index: 0,
+	// 	},
+	// 	destination: null,
+	// }
 	onDragEnd = (result) => {
 		const { destination, source, draggableId } = result
-
 		if (!destination) {
 			return
 		}	
