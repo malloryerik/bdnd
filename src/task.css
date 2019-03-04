@@ -1,0 +1,10 @@
+.hideNSeek {
+	opacity: 0.25;
+	background-color: aliceblue;
+}
+
+.hideNSeek:hover {
+	opacity: 1;
+	background-color: aliceblue;
+	
+}

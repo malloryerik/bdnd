@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { Draggable } from 'react-beautiful-dnd'
+import './task.css'
 
 const Container = styled.div`
 	border: 1px solid lightgrey;
@@ -8,11 +9,20 @@ const Container = styled.div`
 	padding: 8px;
 	margin-bottom: 8px;
 	margin-right: 8px;
+	background-color: white;
 `
+
+const DragHandle = styled.span`
+
+`;
 
 const Papyrus = styled.span`
 	margin-left: 25px;
+	/* ${DragHandle}:hover & {
+    visibility: visible;
+  } */
 `
+
 
 
 export default class Task extends Component {
@@ -26,15 +36,15 @@ export default class Task extends Component {
 				{(provided) => (
 					<Container
 						{...provided.draggableProps}
-						{...provided.dragHandleProps}
+			
 						// should be innerRef dedpending on version of 
 						ref={provided.innerRef}
 					>
 
 						{/* {this.props.task.content} */}
-						:::
-						<Papyrus contentEditable={true}>edit me</Papyrus>
-						<div contentEditable={true}> {this.props.task.content}</div>
+					
+						<DragHandle className="hideNSeek" {...provided.dragHandleProps}>::::::</DragHandle>
+						<Papyrus contentEditable={true}>{this.props.task.content} </Papyrus>
 					</Container>
 				)}
 			</Draggable>

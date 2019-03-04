@@ -10,13 +10,14 @@ import Column from './column.jsx'
 export default class App extends Component {
 	state = initialData
 
+	//reordering logic
 	onDragEnd = result => {
 		
 	}
 
 	render() {
 		return (
-			<DragDropContext
+			<DragDropContext className
 				onDragEnd={this.onDragEnd}
 
 			>
