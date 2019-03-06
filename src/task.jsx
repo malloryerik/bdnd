@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import styled, { css } from 'styled-components'
 import { Draggable } from 'react-beautiful-dnd'
+import ContentEditable from 'react-contenteditable'
 import './task.css'
 
 const Container = styled.div`
-	border: 1px solid black;
-	border-radius: 2px;
 	padding: 8px;
 	margin-bottom: 8px;
 	margin-right: 8px;
-	background-color: black;
+	/* background-color: black; */
+	outline: 0px solid transparent;
 `
 
 const DragHandle = styled.span`
@@ -31,17 +31,26 @@ const Papyrus = styled.span`
 class Task extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { text: "..." };
-
-		this.handleChange = this.handleChange.bind(this);
-
+		this.contentEditable = React.createRef();
+		this.state = {
+			html: ".",
+			dragVisible: "hide"
+		}
 	}
-		handleChange(e) {
-			this.setState({text: e.target.value})
-			console.log("hi")
+	handleChange = (e) => {
+		this.setState({ html: e.target.value })
+		console.log("hi")
+	}
+	onMouseOver = () => {
+		this.setState({ dragVisible: "show" })
+		console.log("mouae")
+	}
+	onMouseOut = () => {
+		this.setState({ dragVisible: "hide" })
+		console.log("hide")
 	}
 
-	render() {
+	render = () => {
 		return (
 			// TODO make contentEditable sane
 			<Draggable className="taskBody"
@@ -51,19 +60,22 @@ class Task extends Component {
 				{(provided) => (
 					<Container
 						{...provided.draggableProps}
-
 						// should be innerRef dedpending on version of 
 						ref={provided.innerRef}
+						onMouseOver={this.onMouseOver}
+						onMouseOut={this.onMouseOut}
 					>
 
 						{/* {this.props.task.content} */}
 
-						<DragHandle className="hideNSeek" {...provided.dragHandleProps}>::::::</DragHandle>
-						{/* <Papyrus contentEditable={true}>{this.props.task.content} </Papyrus> */}
-						<Papyrus
-							contentEditable={true}
-							onKeyDown={this.handleChange}
-						>{this.state.text} .. {this.state.text}	<textarea name="t" id="t" cols="30" rows="10"></textarea> </Papyrus>
+						<DragHandle className={this.state.dragVisible} {...provided.dragHandleProps}>:::</DragHandle>
+						<ContentEditable
+							innerRef={this.contentEditable}
+							html={this.state.html} // innerHTML of the editable div
+							disabled={false}       // use true to disable editing
+							onChange={this.handleChange} // handle innerHTML change
+							tagName='article' // Use a custom HTML tag (uses a div by default)
+						/>
 					</Container>
 				)}
 			</Draggable>

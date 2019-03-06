@@ -9,5 +9,17 @@
 	
 }
 .taskBody {
-	background-color: black;
+	/* background-color: black; */
+}
+.hide {
+	color: grey;
+	opacity: 0;
+
+}
+.show {
+	color: grey;
+	opacity: 1;
+}
+[contenteditable]:focus {
+	outline: 0px solid transparent;
 }
