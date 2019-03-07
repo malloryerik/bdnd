@@ -10,9 +10,13 @@
 }
 .taskBody {
 	/* background-color: black; */
+	display: flex;
+	margin-top: -10px !important;
+	background-color: black;
 }
 .draghandle {
 	color: grey;
+	margin-right: 5px;
 }
 .hide {
 	opacity: 0;
@@ -21,15 +25,36 @@
 .show {
 	opacity: 1;
 }
-/* [contenteditable]:focus {
+
+.flex-container {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  
+  -webkit-flex-flow: row wrap;
+
+}
+
+.flex-item {
+
+}
+
+[contenteditable]:focus {
 	outline: 0px solid transparent;
-} */
-/* [contenteditable=true]:empty:before {
+
+}
+[contenteditable=true]:empty:before {
 	color: grey;
 	opacity: 0.5;
   content: attr(placeholder);
   display: block; /* For Firefox */
-/* }  */
+ } 
 /* [contenteditable=true]:empty {
 	opacity: 1;
 	cursor: text;

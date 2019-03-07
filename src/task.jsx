@@ -16,7 +16,7 @@ const DragHandle = styled.span`
 
 `;
 
-const Papyrus = styled.span`
+const Papyrus = styled.span `
 	margin-left: 25px;
 	margin-right: 8px;
 	word-wrap: true;
@@ -58,6 +58,14 @@ class Task extends Component {
 		})
 		console.log("hide")
 	}
+	onKeyDown = (e) => {
+		console.log(e.key)
+		if (e.key === 'Enter') {
+			e.preventDefault()
+			e.stopPropagation()
+			console.log("Sweeeeeet Jamaica")
+		}
+	}
 
 
 	render = () => {
@@ -74,12 +82,13 @@ class Task extends Component {
 
 		return (
 			// TODO make contentEditable sane
-			<Draggable className="taskBody"
+			<Draggable className="taskBody "
 				draggableId={this.props.task.id}
 				index={this.props.index}
 			>
 				{(provided) => (
 					<Container
+					className="flex-container taskBody"
 						{...provided.draggableProps}
 						// should be innerRef dedpending on version of 
 						ref={provided.innerRef}
@@ -89,13 +98,16 @@ class Task extends Component {
 
 						{/* {this.props.task.content} */}
 
+						<div className={`${this.state.dragVisible} draghandle flex-item`}>+  </div>
+
 						<DragHandle 
-							className={`${this.state.dragVisible} draghandle`}
+							className={`${this.state.dragVisible} draghandle flex-item`}
 							{...provided.dragHandleProps}
-						>:::</DragHandle>
+						> ::: </DragHandle>
 
 						<ContentEditable
-							className={visibility}
+							onKeyDown={this.onKeyDown}
+							className={`${visibility} flex-item` }
 							innerRef={this.contentEditable}
 							html={this.state.html} // innerHTML of the editable div
 							disabled={false}       // use true to disable editing
