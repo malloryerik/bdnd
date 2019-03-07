@@ -107,7 +107,7 @@ class Task extends Component {
 
 						<ContentEditable
 							onKeyDown={this.onKeyDown}
-							className={`${visibility} flex-item` }
+							className={`${visibility} max-width` }
 							innerRef={this.contentEditable}
 							html={this.state.html} // innerHTML of the editable div
 							disabled={false}       // use true to disable editing

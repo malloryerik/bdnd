@@ -45,20 +45,26 @@
 
 }
 
+/* TODO: fix flexbox row width! */
+.max-width {
+	width: 80vw;
+}
+
 [contenteditable]:focus {
 	outline: 0px solid transparent;
 
 }
 [contenteditable=true]:empty:before {
+	width: 100%;
+	cursor: text;
 	color: grey;
 	opacity: 0.5;
   content: attr(placeholder);
   display: block; /* For Firefox */
  } 
-/* [contenteditable=true]:empty {
+[contenteditable=true]:empty {
 	opacity: 1;
 	cursor: text;
 	content: attr(placeholder);
 	display: block;
 } 
-*/
