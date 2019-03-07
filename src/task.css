@@ -11,8 +11,8 @@
 .taskBody {
 	/* background-color: black; */
 	display: flex;
-	margin-top: -10px !important;
-	background-color: black;
+	margin-bottom: -10px !important;
+
 }
 .draghandle {
 	color: grey;

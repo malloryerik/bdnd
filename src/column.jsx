@@ -5,7 +5,7 @@ import Task from './task'
 
 const Container = styled.div`
 	margin: 8px;
-	border: 1px solid grey;
+
 	border-radius: 2px;
 `
 const Title = styled.h3`
