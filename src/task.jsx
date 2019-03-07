@@ -33,8 +33,10 @@ class Task extends Component {
 		super(props);
 		this.contentEditable = React.createRef();
 		this.state = {
-			html: ".",
-			dragVisible: "hide"
+			html: "",
+			dragVisible: "hide",
+			placeholderViz: "hide",
+			contentVisible: "show"
 		}
 	}
 	handleChange = (e) => {
@@ -42,15 +44,34 @@ class Task extends Component {
 		console.log("hi")
 	}
 	onMouseOver = () => {
-		this.setState({ dragVisible: "show" })
+		this.setState({
+			dragVisible: "show",
+			placeholderViz: "hi, Baby!",
+		})
+
 		console.log("mouae")
 	}
 	onMouseOut = () => {
-		this.setState({ dragVisible: "hide" })
+		this.setState({ 
+			dragVisible: "hide",
+			placeholderViz: "hi " 
+		})
 		console.log("hide")
 	}
 
+
 	render = () => {
+
+		let visibility = () => {
+			if (this.state.html == "") {
+				console.log("no visibility")
+				return "hide"
+			} else {
+				console.log("ICU")
+				return "show"
+			}
+		}
+
 		return (
 			// TODO make contentEditable sane
 			<Draggable className="taskBody"
@@ -68,13 +89,19 @@ class Task extends Component {
 
 						{/* {this.props.task.content} */}
 
-						<DragHandle className={this.state.dragVisible} {...provided.dragHandleProps}>:::</DragHandle>
+						<DragHandle 
+							className={`${this.state.dragVisible} draghandle`}
+							{...provided.dragHandleProps}
+						>:::</DragHandle>
+
 						<ContentEditable
+							className={visibility}
 							innerRef={this.contentEditable}
 							html={this.state.html} // innerHTML of the editable div
 							disabled={false}       // use true to disable editing
 							onChange={this.handleChange} // handle innerHTML change
 							tagName='article' // Use a custom HTML tag (uses a div by default)
+							placeholder={`hi`}
 						/>
 					</Container>
 				)}

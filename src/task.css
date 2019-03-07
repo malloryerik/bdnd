@@ -11,15 +11,29 @@
 .taskBody {
 	/* background-color: black; */
 }
-.hide {
+.draghandle {
 	color: grey;
+}
+.hide {
 	opacity: 0;
 
 }
 .show {
-	color: grey;
 	opacity: 1;
 }
-[contenteditable]:focus {
+/* [contenteditable]:focus {
 	outline: 0px solid transparent;
-}
+} */
+/* [contenteditable=true]:empty:before {
+	color: grey;
+	opacity: 0.5;
+  content: attr(placeholder);
+  display: block; /* For Firefox */
+/* }  */
+/* [contenteditable=true]:empty {
+	opacity: 1;
+	cursor: text;
+	content: attr(placeholder);
+	display: block;
+} 
+*/
