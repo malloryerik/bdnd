@@ -7,7 +7,19 @@ import Column from './column.jsx'
 import './index.css'
 
 export default class App extends Component {
-	state = initialData
+	state = {
+		tasks: {
+			"task-1": { id: "task-1", content: "feed the sticks"},
+		},
+		columns: {
+			'column-1': {
+				id: 'column-1',
+				title: "To-do",
+				taskIds: ["task-1",]
+			},
+		},
+		columnOrder: ["column-1"],
+	}
 
 	//reordering logic
 	// result is an object with several fields -- see example-result.js -- which we destructure, 
