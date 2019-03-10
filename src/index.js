@@ -5,20 +5,24 @@ import { DragDropContext } from 'react-beautiful-dnd'
 import initialData from "./initial-data"
 import Column from './column.jsx'
 import './index.css'
+import Clock from './clock';
 
 export default class App extends Component {
-	state = {
-		tasks: {
-			"task-1": { id: "task-1", content: "feed the sticks"},
-		},
-		columns: {
-			'column-1': {
-				id: 'column-1',
-				title: "To-do",
-				taskIds: ["task-1",]
+	constructor(props) {
+		super(props)
+		this.state = {
+			tasks: {
+				"task-1": { id: "task-1", content: "feed the sticks" },
 			},
-		},
-		columnOrder: ["column-1"],
+			columns: {
+				'column-1': {
+					id: 'column-1',
+					title: "To-do",
+					taskIds: ["task-1",]
+				},
+			},
+			columnOrder: ["column-1"],
+		}
 	}
 
 	//reordering logic
@@ -72,17 +76,22 @@ export default class App extends Component {
 
 	render() {
 		return (
-			<DragDropContext className
-				onDragEnd={this.onDragEnd}
+			<div>
+				<Clock/>
 
-			>
-				{this.state.columnOrder.map((col) => {
-					const column = this.state.columns[col]
-					const tasks = column.taskIds.map(taskId => this.state.tasks[taskId])
+				
+				<DragDropContext className
+					onDragEnd={this.onDragEnd}
 
-					return <Column key={column.id} column={column} tasks={tasks} />
-				})}
-			</DragDropContext>
+				>
+					{this.state.columnOrder.map((col) => {
+						const column = this.state.columns[col]
+						const tasks = column.taskIds.map(taskId => this.state.tasks[taskId])
+
+						return <Column key={column.id} column={column} tasks={tasks} />
+					})}
+				</DragDropContext>
+			</div>
 		)
 	}
 }
